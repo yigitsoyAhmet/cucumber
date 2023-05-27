@@ -7,9 +7,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features ="src/test/resources/features",
+        plugin = {"html:target/cucumber-reports.html"},
+        features = "src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@wip", //"@smoke or @regression" : ayrı ayrı calıstırır ikisini de
+        tags = "@qd", //"@smoke or @regression" : ayrı ayrı calıstırır ikisini de
         // "@smoke and @regression" : ise sadece ikisi isaretlenmis olanları calıstırır.
         dryRun = false
 )

@@ -11,31 +11,33 @@ import utilities.ConfigReader;
 import utilities.Driver;
 
 public class AmazonStepDefinitions {
-    AmazonPage amazonPage=new AmazonPage();
+    AmazonPage amazonPage = new AmazonPage();
 
     @Given("Kullanici Amazon anasayfaya gider")
     public void kullanici_amazon_anasayfaya_gider() {
         Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));
 
     }
+
     @When("Nutella icin arama yapar")
     public void nutella_icin_arama_yapar() {
-      amazonPage.aramaKutusu.sendKeys("Nutella" +Keys.ENTER);
-     // amazonPage.aramaKutusu.click();
+        amazonPage.aramaKutusu.sendKeys("Nutella" + Keys.ENTER);
+        // amazonPage.aramaKutusu.click();
 
     }
+
     @Then("Arama sonuclarinin Nutella icerdigini test eder")
     public void arama_sonuclarinin_nutella_icerdigini_test_eder() {
-        String actualAramaSonucu=amazonPage.aramaSonucuElementi.getText();
-        String expectedIcerik="Nutella";
+        String actualAramaSonucu = amazonPage.aramaSonucuElementi.getText();
+        String expectedIcerik = "Nutella";
         Assert.assertTrue(actualAramaSonucu.contains(expectedIcerik));
 
     }
+
     @Then("Sayfayi kapatir")
     public void sayfayi_kapatir() {
-      Driver.closeDriver();
+        Driver.closeDriver();
     }
-
 
 
     @When("Java icin arama yapar")
@@ -44,10 +46,11 @@ public class AmazonStepDefinitions {
         amazonPage.aramaKutusu.sendKeys("Java");
         amazonPage.aramaKutusu.submit();
     }
+
     @Then("Arama sonuclarinin Java icerdigini test eder")
     public void arama_sonuclarinin_java_icerdigini_test_eder() {
-        String actualAramaSonucu=amazonPage.aramaSonucuElementi.getText();
-        String expectedIcerik="Java";
+        String actualAramaSonucu = amazonPage.aramaSonucuElementi.getText();
+        String expectedIcerik = "Java";
         Assert.assertTrue(actualAramaSonucu.contains(expectedIcerik));
 
     }
@@ -55,8 +58,8 @@ public class AmazonStepDefinitions {
 
     @Then("Title'in Amazon icerdigini test eder")
     public void titleInAmazonIcerdiginiTestEder() {
-        String actualtitle=Driver.getDriver().getTitle();
-        String expectedIcerik="Amazon";
+        String actualtitle = Driver.getDriver().getTitle();
+        String expectedIcerik = "Amazon";
     }
 
     @Given("Kullanici {string} anasayfaya gider")
@@ -68,13 +71,13 @@ public class AmazonStepDefinitions {
 
     @When("{string} icin arama yapar")
     public void icinAramaYapar(String aranacakKelime) {
-        amazonPage.aramaKutusu.sendKeys(aranacakKelime+Keys.ENTER);
+        amazonPage.aramaKutusu.sendKeys(aranacakKelime + Keys.ENTER);
 
     }
 
     @Then("Arama sonuclarinin {string} icerdigini test eder")
     public void aramaSonuclarininIcerdiginiTestEder(String expectedIcerik) {
-        String actualAramaSonucu=amazonPage.aramaSonucuElementi.getText();
+        String actualAramaSonucu = amazonPage.aramaSonucuElementi.getText();
         Assert.assertTrue(actualAramaSonucu.contains(expectedIcerik));
 
     }
@@ -83,10 +86,22 @@ public class AmazonStepDefinitions {
     public void saniyeBekler(int beklenecekSaniye) {
         //cucember sayi yazildiginda direk parametre olarak kabul eder
         try {
-            Thread.sleep(beklenecekSaniye*1000);
+            Thread.sleep(beklenecekSaniye * 1000);
         } catch (InterruptedException e) {
 
         }
 
+    }
+
+    @Then("ilk urune click yapar")
+    public void ilk_urune_click_yapar() {
+        amazonPage.ilkUrunElementi.click();
+    }
+
+    @Then("acilan urun isminin {string} icerdigini test eder")
+    public void acilan_urun_isminin_icerdigini_test_eder(String arananKelime) {
+
+        String actualUrunIsmi=amazonPage.ilkUrunIsimElementi.getText();
+        Assert.assertTrue(actualUrunIsmi.contains(arananKelime));
     }
 }
