@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "junit:target/xml-report/cucumber.xml"},
         features = "src/test/resources/features",
         glue = "stepdefinitions",
-        tags = "@ss", //"@smoke or @regression" : ayrı ayrı calıstırır ikisini de
+        tags = "@guru", //"@smoke or @regression" : ayrı ayrı calıstırır ikisini de
         // "@smoke and @regression" : ise sadece ikisi isaretlenmis olanları calıstırır.
         dryRun = false
 )
