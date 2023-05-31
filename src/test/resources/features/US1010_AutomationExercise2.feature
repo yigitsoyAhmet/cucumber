@@ -1,7 +1,7 @@
 Feature: US1010 Kullanici yanlis email ile sisteme giris yapamaz
 
   @ae
-  Scenario: TC16 eksik email ile sisteme giris yapilamaz
+  Scenario: TC14 eksik email ile sisteme giris yapilamaz
 
     Given Kullanici "aeUrl" anasayfaya gider
     Then user sign up linkine tiklar
